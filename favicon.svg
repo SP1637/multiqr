@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6c63ff"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="100" height="100" rx="22" fill="url(#g)"/>
+  <!-- Top-left finder square -->
+  <rect x="18" y="18" width="26" height="26" rx="5" fill="none" stroke="white" stroke-width="6"/>
+  <rect x="26" y="26" width="10" height="10" rx="2" fill="white"/>
+  <!-- Top-right finder square -->
+  <rect x="56" y="18" width="26" height="26" rx="5" fill="none" stroke="white" stroke-width="6"/>
+  <rect x="64" y="26" width="10" height="10" rx="2" fill="white"/>
+  <!-- Bottom-left finder square -->
+  <rect x="18" y="56" width="26" height="26" rx="5" fill="none" stroke="white" stroke-width="6"/>
+  <rect x="26" y="64" width="10" height="10" rx="2" fill="white"/>
+  <!-- Bottom-right data dots -->
+  <rect x="56" y="56" width="10" height="10" rx="2" fill="white"/>
+  <rect x="72" y="56" width="10" height="10" rx="2" fill="white"/>
+  <rect x="56" y="72" width="10" height="10" rx="2" fill="white"/>
+  <rect x="72" y="72" width="10" height="10" rx="2" fill="white"/>
+</svg>

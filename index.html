@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MultiQR — One QR, Multiple Links</title>
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script src="qr-code-styling.js"></script>
   <style>
     :root {
       --primary: #6c63ff;
@@ -853,15 +854,41 @@ function generateQR() {
     </div>
   `;
 
-  // Generate the QR code
-  new QRCode(document.getElementById('qrcode'), {
-    text: qrContent,
-    width: 240,
-    height: 240,
-    colorDark: '#000000',
-    colorLight: '#ffffff',
-    correctLevel: QRCode.CorrectLevel.L
+  // Generate styled QR code
+  const qrInstance = new QRCodeStyling({
+    width: 260,
+    height: 260,
+    type: 'canvas',
+    data: qrContent,
+    margin: 10,
+    qrOptions: { errorCorrectionLevel: 'M' },
+    dotsOptions: {
+      type: 'rounded',
+      gradient: {
+        type: 'linear',
+        rotation: 0.8,
+        colorStops: [
+          { offset: 0, color: '#6c63ff' },
+          { offset: 1, color: '#a855f7' }
+        ]
+      }
+    },
+    backgroundOptions: { color: '#ffffff' },
+    cornersSquareOptions: {
+      type: 'extra-rounded',
+      gradient: {
+        type: 'linear',
+        rotation: 0.8,
+        colorStops: [
+          { offset: 0, color: '#6c63ff' },
+          { offset: 1, color: '#a855f7' }
+        ]
+      }
+    },
+    cornersDotOptions: { type: 'dot', color: '#a855f7' }
   });
+  qrInstance.append(document.getElementById('qrcode'));
+  window._qrInstance = qrInstance;
 
   window._qrContent = qrContent;
 
@@ -930,17 +957,15 @@ function buildDataURI(data) {
    QR ACTIONS
 ───────────────────────────────────────── */
 function downloadQR() {
+  if (window._qrInstance) {
+    window._qrInstance.download({ name: 'MultiQR', extension: 'png' });
+    return;
+  }
+  // fallback
   const canvas = document.querySelector('#qrcode canvas');
-  const img    = document.querySelector('#qrcode img');
-
   if (canvas) {
     const a = document.createElement('a');
     a.href = canvas.toDataURL('image/png');
-    a.download = 'MultiQR.png';
-    a.click();
-  } else if (img) {
-    const a = document.createElement('a');
-    a.href = img.src;
     a.download = 'MultiQR.png';
     a.click();
   }
