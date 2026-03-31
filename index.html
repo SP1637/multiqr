@@ -859,11 +859,11 @@ function generateQR() {
 
   // Generate styled QR code
   const qrInstance = new QRCodeStyling({
-    width: 560,
-    height: 560,
+    width: 800,
+    height: 800,
     type: 'canvas',
     data: qrContent,
-    margin: 20,
+    margin: 24,
     qrOptions: { errorCorrectionLevel: 'M' },
     dotsOptions: {
       type: 'square',
