@@ -858,36 +858,22 @@ function generateQR() {
 
   // Generate styled QR code
   const qrInstance = new QRCodeStyling({
-    width: 260,
-    height: 260,
+    width: 340,
+    height: 340,
     type: 'canvas',
     data: qrContent,
-    margin: 10,
+    margin: 14,
     qrOptions: { errorCorrectionLevel: 'M' },
     dotsOptions: {
-      type: 'rounded',
-      gradient: {
-        type: 'linear',
-        rotation: 0.8,
-        colorStops: [
-          { offset: 0, color: '#6c63ff' },
-          { offset: 1, color: '#a855f7' }
-        ]
-      }
+      type: 'square',
+      color: '#000000'
     },
     backgroundOptions: { color: '#ffffff' },
     cornersSquareOptions: {
-      type: 'extra-rounded',
-      gradient: {
-        type: 'linear',
-        rotation: 0.8,
-        colorStops: [
-          { offset: 0, color: '#6c63ff' },
-          { offset: 1, color: '#a855f7' }
-        ]
-      }
+      type: 'square',
+      color: '#000000'
     },
-    cornersDotOptions: { type: 'dot', color: '#a855f7' }
+    cornersDotOptions: { type: 'square', color: '#000000' }
   });
   qrInstance.append(document.getElementById('qrcode'));
   window._qrInstance = qrInstance;
